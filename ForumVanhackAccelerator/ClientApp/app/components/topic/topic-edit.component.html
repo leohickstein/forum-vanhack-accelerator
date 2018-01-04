@@ -1,0 +1,33 @@
+﻿<br />
+<div class="card">
+    <div class="card-header">
+        <h3 class="mb-0">{{title}}</h3>
+    </div>
+    <div class="card-body">
+        <form #f [formGroup]="form">
+            <div class="form-group" [ngClass]="{ 'has-error has-feedback' : hasError('Title') }">
+                <label for="title">Topic title</label>
+                <br />
+                <input type="text" id="title" formControlName="Title" required placeholder="choose a title..." class="form-control" />
+                <span *ngIf="hasError('Title')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                <div *ngIf="hasError('Title')" class="text-danger">
+                    Title is a required field: please insert a valid title.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Topic description</label>
+                <br />
+                <input type="text" id="description" formControlName="Description" placeholder="enter a description..." class="form-control" />
+            </div>
+        </form>
+        <div class="form-group commands">
+            <button *ngIf="editMode" type="submit" (click)="onSubmit()" [disabled]="form.invalid" class="btn btn-success">
+                Update Topic
+            </button>
+            <button *ngIf="!editMode" type="submit" (click)="onSubmit()" [disabled]="form.invalid" class="btn btn-success">
+                Create Topic
+            </button>
+            <button type="submit" class="btn btn-default" (click)="onBack()">Back to the Forum</button>
+        </div>
+    </div>
+</div>

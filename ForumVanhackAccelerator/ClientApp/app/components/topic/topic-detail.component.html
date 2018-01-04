@@ -1,0 +1,20 @@
+﻿<br />
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-1">
+                <img src="https://lorempixel.com/60/60/?random={{topic.Id}}" alt="{{topic.Title}}" class="rounded" />
+            </div>
+            <div class="col-md-11">
+                <a [routerLink]="['/topic', topic.Id]">
+                    <h4>{{topic.Title}}</h4>
+                </a>
+                <div class="d-flex w-100 justify-content-between">
+                    <span class="mb-1">{{topic.Description}}</span>
+                    <small class="text-dark">created by <strong>{{topic.Username}}</strong> at {{topic.CreatedDate | date:'fullDate'}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <post-list [topic]="topic"></post-list>
+</div>

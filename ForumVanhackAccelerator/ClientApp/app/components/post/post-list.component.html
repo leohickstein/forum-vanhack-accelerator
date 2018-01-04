@@ -1,0 +1,35 @@
+<div class="alert alert-warning" role="alert" *ngIf="posts?.length == 0">
+    This topic doesn't have any posted comments yet.
+</div>
+<ul class="list-group list-group-flush" *ngIf="posts?.length > 0">
+    <li class="list-group-item" *ngFor="let post of posts">
+        <div class="row">
+            <div class="col-md-10">
+                <img src="https://png.icons8.com/metro/540/reply.png" width="25" height="25" class="d-inline-block align-top" alt="">
+                &nbsp;
+                <span>{{post.Content}}</span>
+                <div class="d-flex w-100 justify-content-between">
+                    <small class="text-secondary">posted by <strong>{{post.Username}}</strong> at {{post.CreatedDate | date:'fullDate'}}</small>
+                </div>
+            </div>
+            <div class="col-md-2 text-right" *ngIf="this.auth.isLoggedIn() && post.Username == this.auth.getUser()">
+                <a class="badge badge-success" (click)="onEdit(post)">Editar</a>
+                <a class="badge badge-warning" (click)="onDelete(post)">Excluir</a>
+            </div>
+        </div>
+    </li>
+</ul>
+<div class="card-footer">
+    <form [formGroup]="form" (ngSubmit)="onCreate()" *ngIf="this.auth.isLoggedIn()">
+        <div class="form-group">
+            <input type="text" formControlName="PostComment" required class="form-control" placeholder="Enter your post comment...">
+        </div>
+        <div class="form-group commands">
+            <button type="submit" class="btn btn-success" [disabled]="form.value.PostComment == ''">Post</button>
+            <button type="submit" class="btn btn-default" (click)="onBack()">Back to the Forum</button>
+        </div>
+    </form>
+    <div class="alert alert-warning" role="alert" *ngIf="!this.auth.isLoggedIn()">
+        You need to login before being able to post comments in this topic.
+    </div>
+</div>

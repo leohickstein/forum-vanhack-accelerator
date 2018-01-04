@@ -1,0 +1,27 @@
+﻿<br />
+<div class="bs-component">
+    <div class="card mb-3">
+        <div class="card-header">
+            <a *ngIf="this.auth.isLoggedIn()" class="btn btn-success float-right" href="/topic/create">New Topic</a>
+            <h3>Topics</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let topic of topics">
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="https://lorempixel.com/60/60/?random={{topic.Id}}" alt="{{topic.Title}}" class="rounded" />
+                    </div>
+                    <div class="col-md-11">
+                        <a [routerLink]="['/topic', topic.Id]">
+                            <h4>{{topic.Title}}</h4>
+                        </a>
+                        <div class="d-flex w-100 justify-content-between">
+                            <span class="mb-1">{{topic.Description}}</span>
+                            <small class="text-dark">created by <strong>{{topic.Username}}</strong> at {{topic.CreatedDate | date:'fullDate'}}</small>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<nav class="navbar navbar-dark bg-dark justify-content-between">
+    <a class="navbar-brand" href="/forum">
+        <img src="https://app.vanhack.com/Content/img/payment-page/logo-header.png" width="30" height="30" class="d-inline-block align-top" alt=""> Forum Vanhack Accelerator
+    </a>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" #textFilter aria-label="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="onSearch(textFilter.value);textFilter.value=''">Search</button>
+        &nbsp;&nbsp;
+        <a *ngIf="!this.auth.isLoggedIn()" class="btn btn-secondary my-2 my-sm-0" [routerLink]="['/login']">
+            Login
+        </a>
+        <span *ngIf="this.auth.isLoggedIn()" class="text-light">
+           Welcome <strong>{{this.auth.getUser()}}</strong> ( <a href="/forum" class="badge badge-light" (click)="logout()">Logout</a> )
+        </span>
+    </form>
+</nav>
