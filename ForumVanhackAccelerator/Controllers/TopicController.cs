@@ -8,6 +8,7 @@ using ForumVanhackAccelerator.Data.Model;
 using ForumVanhackAccelerator.Services;
 using ForumVanhackAccelerator.ViewModels;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -101,6 +102,7 @@ namespace ForumVanhackAccelerator.Controllers
 
         // POST: api/topic
         [HttpPost]
+        [Authorize]
         public IActionResult Create([FromBody] TopicViewModel model)
         {
             // return a generic HTTP Status 500(Server Error)
@@ -129,6 +131,7 @@ namespace ForumVanhackAccelerator.Controllers
 
         // PUT: api/topic/5
         [HttpPut("{id}")]
+        [Authorize]
         public void Put(int id, [FromBody] string value)
         {
             throw new NotImplementedException();
@@ -136,14 +139,10 @@ namespace ForumVanhackAccelerator.Controllers
 
         // POST: api/topic/
         [HttpDelete("{topicId}")]
-        //[Authorize]
+        [Authorize]
         public IActionResult Delete(int topicId)
         {
-<<<<<<< HEAD
             // retrieve the topic from the Database
-=======
-            // retrieve the question from the Database
->>>>>>> 8fe180fdc8a30544fc3bd35b111117671477abe4
             var topic = _topicService.GetTopic(topicId);
             if (topic == null)
             {
@@ -154,7 +153,7 @@ namespace ForumVanhackAccelerator.Controllers
             }
 
             // Call the domain layer to handle the delete
-            _topicService.DeleteTopic(topic.Adapt<Topic>());
+            _topicService.DeleteTopic(topic);
 
             // return an HTTP Status 200 (OK).
             return new NoContentResult();

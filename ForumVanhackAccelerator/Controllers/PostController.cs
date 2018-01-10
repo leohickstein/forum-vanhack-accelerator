@@ -45,7 +45,7 @@ namespace ForumVanhackAccelerator.Controllers
 
         // POST: api/topic
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public IActionResult Create([FromBody] PostViewModel model)
         {
             // return a generic HTTP Status 500(Server Error)
@@ -74,7 +74,7 @@ namespace ForumVanhackAccelerator.Controllers
 
         // POST: api/topic
         [HttpPut]
-        //[Authorize]
+        [Authorize]
         public IActionResult Update([FromBody] PostViewModel model)
         {
             // return a generic HTTP Status 500(Server Error)
@@ -90,14 +90,10 @@ namespace ForumVanhackAccelerator.Controllers
 
         // POST: api/post/
         [HttpDelete("{postId}")]
-        //[Authorize]
+        [Authorize]
         public IActionResult Delete(int postId)
         {
-<<<<<<< HEAD
             // retrieve the topic from the Database
-=======
-            // retrieve the question from the Database
->>>>>>> 8fe180fdc8a30544fc3bd35b111117671477abe4
             var post = _postService.GetPost(postId);
             if (post == null)
             {

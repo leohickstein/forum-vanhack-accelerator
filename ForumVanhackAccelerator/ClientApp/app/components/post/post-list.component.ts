@@ -68,11 +68,7 @@ export class PostListComponent implements OnChanges {
     onCreate() {
         var url = this.baseUrl + "api/post/";
 
-<<<<<<< HEAD
         // build a temporary post object from form values
-=======
-        // build a temporary answer object from form values
->>>>>>> 8fe180fdc8a30544fc3bd35b111117671477abe4
         var tempPost = <Post>{};
         tempPost.TopicId = this.topic.Id;
         tempPost.Content = this.form.value.PostComment;
@@ -82,11 +78,7 @@ export class PostListComponent implements OnChanges {
             .post<Post>(url, tempPost)
             .subscribe(
                 res => {
-<<<<<<< HEAD
                     // refresh the post list
-=======
-                    // refresh the question list
->>>>>>> 8fe180fdc8a30544fc3bd35b111117671477abe4
                     this.loadData();
                     // reset form
                     this.resetForm();
@@ -98,13 +90,10 @@ export class PostListComponent implements OnChanges {
         this.router.navigate(["forum"]);
     }
 
-<<<<<<< HEAD
-=======
-    //onEdit(question: Question) {
-    //    this.router.navigate(["/question/edit", question.Id]);
-    //}
+    onEdit() {
+        alert("Not implemented in this version!");
+    }
 
->>>>>>> 8fe180fdc8a30544fc3bd35b111117671477abe4
     onDelete(post: Post) {
         if (confirm("Do you really want to delete this post?")) {
             var url = this.baseUrl + "api/post/" + post.Id;
@@ -112,11 +101,8 @@ export class PostListComponent implements OnChanges {
                 .delete(url)
                 .subscribe(res => {
                     // console.log("Post " + post.Id + " has been deleted.");
-<<<<<<< HEAD
+
                     // refresh the post list
-=======
-                    // refresh the question list
->>>>>>> 8fe180fdc8a30544fc3bd35b111117671477abe4
                     this.loadData();
                 }, error => console.log(error));
         }

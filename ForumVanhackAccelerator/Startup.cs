@@ -73,7 +73,6 @@ namespace ForumVanhackAccelerator
                     cfg.SaveToken = true;
                     cfg.TokenValidationParameters = new TokenValidationParameters()
                     {
-
                         // standard configuration
                         ValidIssuer = Configuration["Auth:Jwt:Issuer"],
                         ValidAudience = Configuration["Auth:Jwt:Audience"],
@@ -113,6 +112,9 @@ namespace ForumVanhackAccelerator
                     context.Context.Response.Headers["Expires"] = Configuration["StaticFiles:Headers:Expires"];
                 }
             });
+
+            // Add the AuthenticationMiddleware to the pipeline
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

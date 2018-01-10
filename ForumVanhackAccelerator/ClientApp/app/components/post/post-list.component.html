@@ -13,8 +13,8 @@
                 </div>
             </div>
             <div class="col-md-2 text-right" *ngIf="this.auth.isLoggedIn() && post.Username == this.auth.getUser()">
-                <a class="badge badge-success" (click)="onEdit(post)">Editar</a>
-                <a class="badge badge-warning" (click)="onDelete(post)">Excluir</a>
+                <a class="badge badge-success" (click)="onEdit(post)">Edit</a>
+                <a class="badge badge-warning" (click)="onDelete(post)">Delete</a>
             </div>
         </div>
     </li>
@@ -29,7 +29,7 @@
             <button type="submit" class="btn btn-default" (click)="onBack()">Back to the Forum</button>
         </div>
     </form>
-    <div class="alert alert-warning" role="alert" *ngIf="!this.auth.isLoggedIn()">
-        You need to login before being able to post comments in this topic.
+    <div class="alert alert-warning" style="margin: 0px;" role="alert" *ngIf="!this.auth.isLoggedIn()">
+        User must be logged in to create new topics.
     </div>
 </div>
